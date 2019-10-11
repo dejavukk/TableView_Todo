@@ -10,10 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
-    
     @IBOutlet var todoLabel: UILabel!
-    
     var todos = [String]()
 
     override func viewDidLoad() {
@@ -24,7 +21,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Rows in the Table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        
         return todos.count
     }
     
@@ -33,9 +29,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "todo-cell", for: indexPath)
         
-        let i = indexPath.row
-        let text =
-        
         return cell
         
     }
@@ -43,9 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
-    
-
-
 }
 
