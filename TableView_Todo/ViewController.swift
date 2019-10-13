@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        todos.append("빨래하기.")
         // Do any additional setup after loading the view.
     }
     
@@ -27,10 +29,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // 각각의 테이블 셀 생성하는 메소드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todo-cell", for: indexPath)
+        let id = "todo-cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
+        
+        let i = indexPath.row
+        
+        let text = todos[i]
+        cell.textLabel?.text = text
         
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
