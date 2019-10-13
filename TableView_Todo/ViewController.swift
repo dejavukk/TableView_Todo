@@ -8,16 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    
+    struct todo {
+        var text: String
+        var isDone: Bool
+
+    }
     
     @IBOutlet var todoLabel: UILabel!
-    var todos = [String]()
+    var todos = [todo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todos.append("빨래하기.")
+        // todos.append("빨래하기.")
         // Do any additional setup after loading the view.
+        
+        // 구조체 추가.
+        let t = todo(text: "고양이 돌보기", isDone: false)
+        todos.append(t)
+        
     }
     
     // Rows in the Table.
@@ -32,10 +43,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let id = "todo-cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
         
-        let i = indexPath.row
+        var todo = todos[indexPath.row]
+        todo.isDone = !todo.isDone
+        todos[indexPath.row] = todo
         
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        
+        cell.textLabel?.text = todo.text
+
+        if todo.isDone {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
+        let i = indexPath.row
         let text = todos[i]
-        cell.textLabel?.text = text
         
         return cell
     }
