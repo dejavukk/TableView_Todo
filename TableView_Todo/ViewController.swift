@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBOutlet var todoLabel: UILabel!
+    @IBOutlet var inputTextField: UITextField!
+    
+    
     var todos = [todo]()
 
     override func viewDidLoad() {
@@ -67,6 +70,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    // TextField Delegate.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
 
